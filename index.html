@@ -41,17 +41,14 @@
             box-sizing: border-box;
         }
 
-        .brand-logo-container {
+        /* NEU: Bild-Header statt SVG-Code */
+        .brand-header-img {
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto 25px auto;
-            filter: drop-shadow(0 0 15px rgba(255, 202, 40, 0.3));
-        }
-        
-        .brand-logo-container svg {
-            width: 100%;
+            max-width: 550px;
             height: auto;
+            margin: 0 auto 20px auto;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(255, 202, 40, 0.2));
         }
 
         .nav-btn {
@@ -107,15 +104,12 @@
             margin: 0 0 25px 0;
         }
 
-        /* KORREKTUR: Höherer z-index, damit der Klick nicht blockiert wird */
         .social-icons {
             margin-top: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
             height: 40px;
-            z-index: 10; 
         }
 
         .social-link {
@@ -133,21 +127,24 @@
             text-shadow: 0 0 10px rgba(255, 202, 40, 0.4);
         }
 
+        /* RADIKALE KORREKTUR: Der Waschbär steht jetzt über allem und klebt fest unten rechts */
         .secret-trigger {
-            position: absolute;
-            right: 0;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             cursor: pointer;
-            font-size: 1.4rem;
+            font-size: 2rem; /* Etwas größer für besseres Tippen auf dem Handy */
             transition: all 0.3s ease;
             user-select: none;
-            opacity: 0.6;
-            z-index: 20; 
-            padding: 10px;
+            opacity: 0.5;
+            z-index: 9999; /* Absolut oberste Ebene */
+            padding: 15px;  /* Vergrößert die Klickfläche enorm! */
         }
+        
         .secret-trigger:hover {
-            transform: scale(1.3) rotate(15deg);
+            transform: scale(1.2) rotate(15deg);
             opacity: 1;
-            text-shadow: 0 0 10px #ffca28;
+            text-shadow: 0 0 15px #ffca28;
         }
 
         /* POP-UP OVERLAY */
@@ -365,63 +362,8 @@
     <div id="patronus" class="patronus-spirit"></div>
 
     <div class="container">
-        <!-- HEADER-LOGO -->
-        <div class="brand-logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 250">
-                <defs>
-                    <linearGradient id="hpGold" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#fff4cc"/>
-                        <stop offset="30%" stop-color="#ffca28"/>
-                        <stop offset="70%" stop-color="#d4a317"/>
-                        <stop offset="100%" stop-color="#8a640f"/>
-                    </linearGradient>
-                    <filter id="magicGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="6" result="blur" />
-                        <feComponentTransfer in="blur" result="glow1">
-                            <feFuncA type="linear" slope="0.5"/>
-                        </feComponentTransfer>
-                        <feMerge>
-                            <feMergeNode in="glow1"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Linke Maske -->
-                <g transform="translate(110, 125) scale(0.75)" filter="url(#magicGlow)">
-                    <path d="M-60,-70 C-75,-110 -40,-130 -25,-95 C-5,-105 5,-105 25,-95 C40,-130 75,-110 60,-70 C75,-20 70,50 0,90 C-70,50 -75,-20 -60,-70 Z" fill="#fcfaf2" stroke="#d4a317" stroke-width="2"/>
-                    <path d="M-60,-70 C-72,-105 -48,-115 -32,-93 Z" fill="#e63946"/>
-                    <path d="M60,-70 C72,-105 48,-115 32,-93 Z" fill="#e63946"/>
-                    <path d="M-40,-15 C-25,-25 -10,-15 -5,-12 C-15,-2 -30,-2 -40,-15 Z" fill="#1a1a1a"/>
-                    <path d="M-38,-14 C-25,-22 -12,-14 -8,-12" fill="none" stroke="#e63946" stroke-width="3"/>
-                    <path d="M40,-15 C25,-25 10,-15 5,-12 C15,-2 30,-2 40,-15 Z" fill="#1a1a1a"/>
-                    <path d="M38,-14 C25,-22 12,-14 8,-12" fill="none" stroke="#e63946" stroke-width="3"/>
-                    <path d="M0,-50 C-15,-50 -20,-30 0,-10 C20,-30 15,-50 0,-50 Z" fill="none" stroke="#457b9d" stroke-width="2"/>
-                    <path d="M0,-40 C-8,-40 -10,-30 0,-15 C10,-30 8,-40 0,-40 Z" fill="#e63946"/>
-                    <path d="M-52,-25 C-60,-10 -50,5 -35,0" fill="none" stroke="#e63946" stroke-width="3"/>
-                    <path d="M52,-25 C60,-10 50,5 35,0" fill="none" stroke="#e63946" stroke-width="3"/>
-                    <circle cx="-55" cy="98" r="6" fill="#d4a317"/>
-                    <circle cx="55" cy="98" r="6" fill="#d4a317"/>
-                </g>
-                <!-- Text -->
-                <g transform="translate(500, 145)" filter="url(#magicGlow)" text-anchor="middle">
-                    <text font-family="'Cinzel Decorative', serif" font-weight="bold" font-size="72" fill="url(#hpGold)">Cyan Kitsune</text>
-                </g>
-                <!-- Rechte Maske -->
-                <g transform="translate(890, 125) scale(0.75)" filter="url(#magicGlow)">
-                    <path d="M-60,-70 C-75,-110 -40,-130 -25,-95 C-5,-105 5,-105 25,-95 C40,-130 75,-110 60,-70 C75,-20 70,50 0,90 C-70,50 -75,-20 -60,-70 Z" fill="#181d24" stroke="#d4a317" stroke-width="2"/>
-                    <path d="M-60,-70 C-72,-105 -48,-115 -32,-93 Z" fill="#8a640f"/>
-                    <path d="M60,-70 C72,-105 48,-115 32,-93 Z" fill="#8a640f"/>
-                    <path d="M-40,-15 C-25,-25 -10,-15 -5,-12 C-15,-2 -30,-2 -40,-15 Z" fill="#fffdec"/>
-                    <path d="M40,-15 C25,-25 10,-15 5,-12 C15,-2 30,-2 40,-15 Z" fill="#fffdec"/>
-                    <path d="M0,-50 C-15,-50 -20,-30 0,-10 C20,-30 15,-50 0,-50 Z" fill="none" stroke="#d4a317" stroke-width="2"/>
-                    <path d="M0,-40 C-8,-40 -10,-30 0,-15 C10,-30 8,-40 0,-40 Z" fill="#ffca28"/>
-                    <path d="M-52,-25 C-60,-10 -50,5 -35,0" fill="none" stroke="#d4a317" stroke-width="2"/>
-                    <path d="M52,-25 C60,-10 50,5 35,0" fill="none" stroke="#d4a317" stroke-width="2"/>
-                    <circle cx="-55" cy="98" r="6" fill="#ffca28"/>
-                    <circle cx="55" cy="98" r="6" fill="#ffca28"/>
-                </g>
-            </svg>
-        </div>
+        <!-- NEU: Das exakte Wunschbild 1000052800.png als glanzvolle Überschrift -->
+        <img class="brand-header-img" src="1000052800.png" alt="Cyan Kitsune">
 
         <!-- Buttons -->
         <a href="buecher.html" class="nav-btn highlight">Für deine Bücher</a>
@@ -443,12 +385,12 @@
                 <a href="https://www.tiktok.com/@cyan.kitsune" target="_blank" class="social-link" title="TikTok">
                     <i class="fab fa-tiktok"></i>
                 </a>
-                
-                <!-- Der geheime Trigger -->
-                <span class="secret-trigger" onclick="revealMagic()" title="??">🦝</span>
             </div>
         </div>
     </div>
+
+    <!-- DER GEHEIME TRIGGER (Jetzt komplett frei schwebend und unblockierbar unten rechts) -->
+    <span class="secret-trigger" onclick="revealMagic()" title="??">🦝</span>
 
     <!-- MAGISCHES OVERLAY -->
     <div id="magic-overlay" class="overlay">
@@ -517,4 +459,32 @@
                 document.getElementById('birthday-title-container').style.display = 'none';
                 document.getElementById('msg-title').style.display = 'block';
                 document.getElementById('msg-text').style.display = 'block';
-                document.getElementById('lumos-btn
+                document.getElementById('lumos-btn').style.display = 'block';
+                document.getElementById('marauders-map').style.display = 'none';
+                document.getElementById('magic-container').innerHTML = '';
+            }, 800);
+        }
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 25 + 5; 
+            const left = Math.random() * 100; 
+            const duration = Math.random() * 3 + 2; 
+            const delay = Math.random() * 2; 
+            const drift = (Math.random() * 200 - 100) + 'px'; 
+            
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = left + 'vw';
+            particle.style.setProperty('--duration', duration + 's');
+            particle.style.animationDelay = delay + 's';
+            particle.style.setProperty('--drift', drift);
+            
+            container.appendChild(particle);
+        }
+    </script>
+
+</body>
+</html>
