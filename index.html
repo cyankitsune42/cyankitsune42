@@ -111,7 +111,6 @@
             margin: 0 0 25px 0;
         }
 
-        /* Social Media Icons & Geheimer Waschbär */
         .social-icons {
             margin-top: 15px;
             display: flex;
@@ -135,7 +134,6 @@
             text-shadow: 0 0 10px rgba(255, 202, 40, 0.4);
         }
 
-        /* Der geheime Waschbär ganz weit rechts */
         .secret-trigger {
             position: absolute;
             right: 0;
@@ -181,13 +179,34 @@
             border: 2px solid #c5b47f;
             position: relative;
             transform: scale(0.7) translateY(30px);
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.2);
             font-family: 'Playfair Display', serif;
             text-align: center;
             z-index: 12;
         }
 
         .overlay.active .parchment {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Wenn die Karte komplett geöffnet wird */
+        .parchment.map-open {
+            max-width: 100vw;
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            border-radius: 0;
+            border: none;
+            padding: 0;
+            margin: 0;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'), url('https://www.transparenttextures.com/patterns/parchment.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: none;
             transform: scale(1) translateY(0);
         }
 
@@ -200,14 +219,54 @@
             margin-top: 0;
             margin-bottom: 20px;
             letter-spacing: 1px;
+            transition: opacity 0.4s;
         }
 
         .parchment p {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             line-height: 1.8;
             font-style: italic;
             color: #3e2723;
             margin-bottom: 0;
+            transition: opacity 0.4s;
+        }
+
+        /* Lumos Aktivierungsknopf unten */
+        .lumos-link {
+            display: inline-block;
+            margin-top: 30px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.4rem;
+            color: #795548;
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: 3px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            padding: 5px 15px;
+            border: 1px solid transparent;
+        }
+        .lumos-link:hover {
+            color: #ffca28;
+            text-shadow: 0 0 15px #ffca28;
+            letter-spacing: 6px;
+        }
+
+        /* Die eigentliche Karte des Raumtreibers (wird reingeladen) */
+        .marauders-map-img {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            object-fit: contain;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border-radius: 8px;
+            animation: mapAppear 1.5s ease forward;
+        }
+
+        @keyframes mapAppear {
+            0% { opacity: 0; transform: scale(0.8); filter: saturate(0); }
+            100% { opacity: 1; transform: scale(1); filter: saturate(1); }
         }
 
         .close-btn {
@@ -217,8 +276,10 @@
             cursor: pointer;
             color: #8d6e63;
             transition: color 0.3s;
+            z-index: 15;
         }
         .close-btn:hover { color: #5d4037; }
+        .parchment.map-open .close-btn { color: #ffffff; text-shadow: 0 0 8px rgba(0,0,0,0.8); }
 
         /* LUMOS PARTIKEL ANIMATION */
         .particle {
@@ -238,7 +299,7 @@
             100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
         }
 
-        /* EXPECTO PATRONUM EFFEKT (SILBER-BLAUE GESTALT) */
+        /* EXPECTO PATRONUM EFFEKT */
         .patronus-spirit {
             position: fixed;
             top: 50%; left: 50%;
@@ -253,7 +314,6 @@
             box-shadow: 0 0 60px 40px rgba(0, 180, 216, 0.5), inset 0 0 40px 20px rgba(255,255,255,0.9);
         }
 
-        /* Die Animation, wie der Patronus emporsteigt */
         .patronus-active {
             animation: patronusErupt 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
         }
@@ -275,10 +335,7 @@
 </head>
 <body>
 
-    <!-- Container für die fliegenden Lumos-Funken -->
     <div id="magic-container"></div>
-    
-    <!-- Das Element für das aufsteigende Patronus-Licht -->
     <div id="patronus" class="patronus-spirit"></div>
 
     <div class="container">
@@ -304,43 +361,66 @@
                     <i class="fab fa-tiktok"></i>
                 </a>
                 
-                <!-- Der Waschbär ganz weit rechts -->
                 <span class="secret-trigger" onclick="revealMagic()" title="??">🦝</span>
             </div>
         </div>
     </div>
 
-    <!-- DAS GEHEIME POP-UP FENSTER -->
+    <!-- GEHEIMES PERGAMENT-POP-UP -->
     <div id="magic-overlay" class="overlay">
-        <div class="parchment">
+        <div id="parchment-card" class="parchment">
             <span class="close-btn" onclick="closeMagic()">&times;</span>
-            <h2>Ich schwöre feierlich, <br>ich bin ein Tunichtgut.</h2>
-            <p>
-                „Weißt du, man kann Glück und Freude selbst in den dunkelsten Zeiten finden, wenn man sich nur daran erinnert, ein Licht anzuzünden.“<br><br>
-                Alles Liebe zum Geburtstag, meine Prinzessin! Ich wünsche dir, dass du dieses Licht und deine kreative Magie niemals verlierst. Ich werde immer da sein, um dir den Rücken freizuhalten.
+            
+            <!-- Die auszublendenden Elemente bei Aktivierung -->
+            <h2 id="msg-title">Ich schwöre feierlich, <br>ich bin ein Tunichtgut.</h2>
+            <p id="msg-text">
+                „Weißt du, man kann Glück und Freude selbst in den dunkelsten Zeiten finden, wenn man sich nur daran erinnert, ein Licht anzuzünden.“
             </p>
+            
+            <!-- Der Lumos Button zum Öffnen der großen Karte -->
+            <div id="lumos-btn" class="lumos-link" onclick="openMaraudersMap()">LUMOS</div>
+
+            <!-- Die richtige, eingebundene Karte des Raumtreibers -->
+            <img id="marauders-map" class="marauders-map-img" src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=800&q=80" alt="The Marauder's Map">
         </div>
     </div>
 
-    <!-- MAGISCHES SCRIPT FÜR HARRY POTTER EFFEKTE -->
     <script>
         function revealMagic() {
-            // 1. Patronus-Lichtgestalt aktivieren
             const patronus = document.getElementById('patronus');
             patronus.classList.remove('patronus-active');
-            void patronus.offsetWidth; // Trick, um die CSS-Animation neu zu starten
+            void patronus.offsetWidth; 
             patronus.classList.add('patronus-active');
 
-            // 2. Pop-up öffnen (leicht verzögert für den perfekten visuellen Moment)
             setTimeout(() => {
                 document.getElementById('magic-overlay').classList.add('active');
             }, 200);
             
-            // 3. Lumos-Funken-Regen starten
             const container = document.getElementById('magic-container');
             container.innerHTML = ''; 
-            
             for (let i = 0; i < 40; i++) {
+                createParticle(container);
+            }
+        }
+
+        // Neue Funktion: Verwandelt das Pergament in die Karte des Raumtreibers
+        function openMaraudersMap() {
+            // Text ausblenden
+            document.getElementById('msg-title').style.display = 'none';
+            document.getElementById('msg-text').style.display = 'none';
+            document.getElementById('lumos-btn').style.display = 'none';
+            
+            // Container maximieren und echtes Karten-Layout aktivieren
+            const card = document.getElementById('parchment-card');
+            card.classList.add('map-open');
+            
+            // Bild der Karte anzeigen
+            const mapImg = document.getElementById('marauders-map');
+            mapImg.style.display = 'block';
+            
+            // Noch einmal einen intensiven Lumos-Funkenregen erzeugen!
+            const container = document.getElementById('magic-container');
+            for (let i = 0; i < 30; i++) {
                 createParticle(container);
             }
         }
@@ -348,9 +428,16 @@
         function closeMagic() {
             document.getElementById('magic-overlay').classList.remove('active');
             document.getElementById('patronus').classList.remove('patronus-active');
+            
+            // Nach dem Schließen alles wieder in den Ursprungszustand zurücksetzen
             setTimeout(() => {
+                document.getElementById('parchment-card').classList.remove('map-open');
+                document.getElementById('msg-title').style.display = 'block';
+                document.getElementById('msg-text').style.display = 'block';
+                document.getElementById('lumos-btn').style.display = 'block';
+                document.getElementById('marauders-map').style.display = 'none';
                 document.getElementById('magic-container').innerHTML = '';
-            }, 600);
+            }, 800);
         }
 
         function createParticle(container) {
