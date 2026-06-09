@@ -8,8 +8,7 @@
     <style>
         body {
             margin: 0; padding: 0;
-            /* Dunkler, edler Hintergrund als Basis */
-            background: #0f141c;
+            background: #0d1117;
             color: #cfd8dc;
             font-family: 'Playfair Display', serif;
             min-height: 100vh;
@@ -19,52 +18,54 @@
             overflow: hidden;
         }
 
-        /* Farbkleckse im Hintergrund (Cyan und Magenta) */
+        /* Große, leuchtende Cyan- und Magenta-Farbkleckse, die hinter/neben der Box hervorschauen */
         .color-splatter-1 {
             position: absolute;
-            top: 20%; left: 15%; width: 250px; height: 250px;
-            background: radial-gradient(circle, rgba(0, 210, 255, 0.25) 0%, transparent 70%);
-            filter: blur(30px);
+            top: 15%; left: -10%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.4) 0%, transparent 70%);
+            filter: blur(40px);
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
 
         .color-splatter-2 {
             position: absolute;
-            bottom: 15%; right: 10%; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(255, 0, 128, 0.15) 0%, transparent 70%);
-            filter: blur(40px);
+            bottom: 10%; right: -10%; width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(255, 0, 128, 0.3) 0%, transparent 70%);
+            filter: blur(50px);
             pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Stilisierte Kitsune-Maske im Hintergrund per SVG */
-        .kitsune-bg {
-            position: absolute;
-            top: 45%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
-            opacity: 0.08; /* Dezent im Hintergrund */
-            pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
 
         .art-card {
-            z-index: 1;
+            position: relative;
+            z-index: 2;
             max-width: 650px;
             width: 85%;
             padding: 40px 25px;
-            background: rgba(15, 20, 28, 0.75);
+            background: rgba(15, 20, 28, 0.8);
             border-radius: 20px;
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(0, 210, 255, 0.05);
-            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.7), 
+                0 0 30px rgba(0, 210, 255, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden; /* Hält die Maske sauber innerhalb der Box */
+        }
+
+        /* Die Kitsune-Maske direkt IN der Box als sichtbares Designelement */
+        .kitsune-bg {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 180px;
+            height: 180px;
+            opacity: 0.35; /* Deutlich sichtbarer geschraubt */
+            pointer-events: none;
         }
 
         h1 { 
             font-family: 'Cinzel Decorative', serif; 
-            font-size: 2.5rem; 
+            font-size: 2.3rem; 
             color: #ffca28; 
             margin-top: 0;
             margin-bottom: 25px; 
@@ -73,7 +74,7 @@
         }
 
         p { 
-            font-size: 1.3rem; 
+            font-size: 1.25rem; 
             font-style: italic; 
             line-height: 1.7; 
             color: #e3f2fd; 
@@ -95,43 +96,44 @@
         }
 
         .back-btn:hover { 
-            background: rgba(0, 210, 255, 0.1);
+            background: rgba(0, 210, 255, 0.15);
             border-color: #00d2ff;
             color: #00d2ff;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <!-- Farbkleckse im Hintergrund -->
+    <!-- Farbkleckse an den Bildschirmrändern -->
     <div class="color-splatter-1"></div>
     <div class="color-splatter-2"></div>
 
-    <!-- Die Kitsune Maske als feine Linien-Grafik -->
-    <svg class="kitsune-bg" viewBox="0 0 100 100" fill="none" stroke="#00d2ff" stroke-width="1.5" stroke-linecap="round">
-        <!-- Masken-Umriss -->
-        <path d="M50,15 C28,15 20,35 20,55 C20,75 35,90 50,90 C65,90 80,75 80,55 C80,35 72,15 50,15 Z" />
-        <!-- Ohren -->
-        <path d="M25,25 L10,5 C10,5 25,12 32,18" />
-        <path d="M75,25 L90,5 C90,5 75,12 68,18" />
-        <!-- Augen-Ausschnitte (Kitsune-Stil) -->
-        <path d="M32,48 C36,44 42,46 44,52 C40,54 34,53 32,48 Z" fill="#ff0080" opacity="0.4" />
-        <path d="M68,48 C64,44 58,46 56,52 C60,54 66,53 68,48 Z" fill="#ff0080" opacity="0.4" />
-        <!-- Rote traditionelle Masken-Bemalung (Wangen/Stirn) -->
-        <path d="M50,22 L50,35 M47,28 L53,28" stroke="#ff0080" stroke-width="2" />
-        <path d="M22,58 C26,62 28,68 26,74" stroke="#ff0080" />
-        <path d="M78,58 C74,62 72,68 74,74" stroke="#ff0080" />
-        <!-- Nase/Mund -->
-        <path d="M48,65 L52,65 L50,68 Z" fill="#00d2ff" />
-    </svg>
-
     <div class="art-card">
+        
+        <!-- Die Kitsune Maske sitzt jetzt prominent über dem Text -->
+        <svg class="kitsune-bg" viewBox="0 0 100 100" fill="none" stroke="#00d2ff" stroke-width="1.8" stroke-linecap="round">
+            <!-- Masken-Umriss -->
+            <path d="M50,15 C28,15 20,35 20,55 C20,75 35,90 50,90 C65,90 80,75 80,55 C80,35 72,15 50,15 Z" />
+            <!-- Ohren -->
+            <path d="M25,25 L10,5 C10,5 25,12 32,18" />
+            <path d="M75,25 L90,5 C90,5 75,12 68,18" />
+            <!-- Augen-Ausschnitte (Kitsune-Stil) -->
+            <path d="M32,48 C36,44 42,46 44,52 C40,54 34,53 32,48 Z" fill="#ff0080" opacity="0.6" />
+            <path d="M68,48 C64,44 58,46 56,52 C60,54 66,53 68,48 Z" fill="#ff0080" opacity="0.6" />
+            <!-- Rote traditionelle Masken-Bemalung -->
+            <path d="M50,22 L50,35 M47,28 L53,28" stroke="#ff0080" stroke-width="2" />
+            <path d="M22,58 C26,62 28,68 26,74" stroke="#ff0080" />
+            <path d="M78,58 C74,62 72,68 74,74" stroke="#ff0080" />
+            <!-- Nase -->
+            <path d="M48,65 L52,65 L50,68 Z" fill="#00d2ff" />
+        </svg>
+
         <h1>Hier deine Kunst</h1>
         
         <p>
-            Der Ort, an dem deine Kreativität keine Grenzen kennt. 
+            Der Ort, an dem deine Kreativität keine Grenzen kennt. <br>
             Jede Linie, jede Farbe und jedes Design ist ein Teil deiner eigenen Welt – bereit, hier gesehen zu werden.
         </p>
         
