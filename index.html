@@ -40,7 +40,7 @@
             justify-content: center;
         }
 
-        /* Robuster oberer Abstandshalter, der das Layout ohne den alten Titel stabilisiert */
+        /* Hält das Layout ohne Titel stabil */
         .main-header {
             height: 80px;
             width: 100%;
@@ -140,7 +140,7 @@
             text-shadow: 0 0 10px #ffca28;
         }
 
-        /* MAGISCHES POP-UP OVERLAY */
+        /* POP-UP OVERLAY */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -184,7 +184,7 @@
             transform: scale(1) translateY(0);
         }
 
-        /* Vollbild-Modus für das Finale */
+        /* Vollbild für das Finale */
         .parchment.map-open {
             max-width: 100vw;
             width: 100vw;
@@ -215,7 +215,7 @@
             letter-spacing: 1px;
         }
 
-        /* Der verschobene Geburtstagstext über dem Bild */
+        /* Geburtstagstext über dem Bild */
         .overlay-birthday-title {
             display: none;
             font-family: 'Cinzel Decorative', serif;
@@ -271,7 +271,7 @@
             letter-spacing: 6px;
         }
 
-        /* Das fertige Kunstwerk aus dem Repository */
+        /* Das Bild aus deinem Repository */
         .marauders-map-img {
             display: none;
             width: 100%;
@@ -356,8 +356,6 @@
     <div id="magic-container"></div>
     <div id="patronus" class="patronus-spirit"></div>
 
-    <audio id="potter-theme" src="https://vgmdownloads.com/soundtracks/harry-potter-and-the-sorcerers-stone-ps1/yvbybpgm/02.%20Hedwig%27s%20Theme%20%28Main%20Title%29.mp3" preload="auto" loop></audio>
-
     <div class="container">
         <div class="main-header"></div>
 
@@ -390,90 +388,5 @@
             <span class="close-btn" onclick="closeMagic()">&times;</span>
             
             <div id="birthday-title-container" class="overlay-birthday-title">
-                <h1>HAPPY BIRTHDAY</h1>
-                <p>PRINZESSIN (29 + 1)</p>
-            </div>
-
-            <h2 id="msg-title">Ich schwöre feierlich, <br>ich bin ein Tunichtgut.</h2>
-            <p id="msg-text">
-                „Weißt du, man kann Glück und Freude selbst in den dunkelsten Zeiten finden, wenn man sich nur daran erinnert, ein Licht anzuzünden.“
-            </p>
-            
-            <div id="lumos-btn" class="lumos-link" onclick="openMaraudersMap()">LUMOS</div>
-
-            <img id="marauders-map" class="marauders-map-img" src="file_0000000037e871fd8bd6e0fd161d3f04.png" alt="Magisches Artwork">
-        </div>
-    </div>
-
-    <script>
-        function revealMagic() {
-            const patronus = document.getElementById('patronus');
-            patronus.classList.remove('patronus-active');
-            void patronus.offsetWidth; 
-            patronus.classList.add('patronus-active');
-
-            setTimeout(() => {
-                document.getElementById('magic-overlay').classList.add('active');
-            }, 200);
-            
-            const container = document.getElementById('magic-container');
-            container.innerHTML = ''; 
-            for (let i = 0; i < 40; i++) {
-                createParticle(container);
-            }
-        }
-
-        function openMaraudersMap() {
-            const audio = document.getElementById('potter-theme');
-            if(audio) {
-                audio.currentTime = 0;
-                audio.volume = 0.4;
-                audio.play().catch(e => console.log("Audio blockiert, läuft geräuschlos weiter."));
-            }
-
-            document.getElementById('msg-title').style.display = 'none';
-            document.getElementById('msg-text').style.display = 'none';
-            document.getElementById('lumos-btn').style.display = 'none';
-            
-            const card = document.getElementById('parchment-card');
-            card.classList.add('map-open');
-            
-            document.getElementById('birthday-title-container').style.display = 'block';
-            
-            const mapImg = document.getElementById('marauders-map');
-            mapImg.style.display = 'block';
-            
-            const container = document.getElementById('magic-container');
-            for (let i = 0; i < 30; i++) {
-                createParticle(container);
-            }
-        }
-
-        function closeMagic() {
-            document.getElementById('magic-overlay').classList.remove('active');
-            document.getElementById('patronus').classList.remove('patronus-active');
-            
-            const audio = document.getElementById('potter-theme');
-            if(audio) { audio.pause(); }
-            
-            setTimeout(() => {
-                document.getElementById('parchment-card').classList.remove('map-open');
-                document.getElementById('birthday-title-container').style.display = 'none';
-                document.getElementById('msg-title').style.display = 'block';
-                document.getElementById('msg-text').style.display = 'block';
-                document.getElementById('lumos-btn').style.display = 'block';
-                document.getElementById('marauders-map').style.display = 'none';
-                document.getElementById('magic-container').innerHTML = '';
-            }, 800);
-        }
-
-        function createParticle(container) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            const size = Math.random() * 25 + 5; 
-            const left = Math.random() * 100; 
-            const duration = Math.random() * 3 + 2; 
-            const delay = Math.random() * 2; 
-            const drift = (Math.random() * 200 -
-        
+                <h1>HAPPY BIRTHDAY
+                    
