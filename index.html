@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -150,11 +149,11 @@
             text-shadow: 0 0 10px #ffca28;
         }
 
-        /* MAGISCHES POP-UP (HARRY POTTER STYLE) */
+        /* MAGISCHES POP-UP */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(4, 7, 12, 0.92);
+            background: rgba(4, 7, 12, 0.94);
             backdrop-filter: blur(8px);
             z-index: 10;
             display: flex; align-items: center; justify-content: center;
@@ -167,7 +166,7 @@
             pointer-events: auto;
         }
 
-        /* Pergament-Look für den Brief */
+        /* Pergament-Look für das Zitat */
         .parchment {
             background: #f4eccf;
             background-image: radial-gradient(rgba(0,0,0,0.05) 15%, transparent 20%), radial-gradient(rgba(0,0,0,0.05) 15%, transparent 20%);
@@ -190,7 +189,7 @@
             transform: scale(1) translateY(0);
         }
 
-        /* Vollbild-Modus für die echte Karte des Rumtreibers */
+        /* Vollbild-Modus für das große Finale */
         .parchment.map-open {
             max-width: 100vw;
             width: 100vw;
@@ -200,9 +199,7 @@
             border: none;
             padding: 0;
             margin: 0;
-            /* Hintergrund-Textur für das haptische Feeling */
-            background-color: #1a1105;
-            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            background: #04070c;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -249,23 +246,20 @@
             letter-spacing: 6px;
         }
 
-        /* Die korrigierte, echte Karte des Rumtreibers */
+        /* Das spektakuläre Finalbild direkt aus deinem Repository */
         .marauders-map-img {
             display: none;
-            width: 95%;
-            max-width: 900px;
-            height: auto;
-            max-height: 85vh;
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            max-height: 100vh;
             object-fit: contain;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-            border: 3px solid #36220f;
-            border-radius: 4px;
-            animation: mapAppear 1.8s ease forwards;
+            animation: mapAppear 1.5s ease forwards;
         }
 
         @keyframes mapAppear {
-            0% { opacity: 0; transform: scale(0.7) rotate(-2deg); filter: brightness(0.3); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); filter: brightness(1); }
+            0% { opacity: 0; transform: scale(0.9); filter: brightness(0.5); }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
         }
 
         .close-btn {
@@ -278,9 +272,9 @@
             z-index: 15;
         }
         .close-btn:hover { color: #5d4037; }
-        .parchment.map-open .close-btn { color: #ffca28; text-shadow: 0 0 10px rgba(0,0,0,0.5); font-size: 2rem; }
+        .parchment.map-open .close-btn { color: #ffffff; text-shadow: 0 0 10px rgba(0,0,0,0.8); font-size: 2.2rem; top: 20px; right: 25px; }
 
-        /* LUMOS PARTIKEL ANIMATION */
+        /* LUMOS PARTIKEL */
         .particle {
             position: fixed;
             background: radial-gradient(circle, rgba(255,236,179,1) 0%, rgba(255,202,40,0) 70%);
@@ -337,8 +331,8 @@
     <div id="magic-container"></div>
     <div id="patronus" class="patronus-spirit"></div>
 
-    <!-- Verstecktes Audio-Element für die geheimnisvolle Filmmusik -->
-    <audio id="potter-theme" src="https://assets.mixkit.co/active_storage/sfx/1993/1993-84.wav" preload="auto"></audio>
+    <!-- Hintergrund-Audio (Ausweichlink zu einer zuverlässigen Spielemusik-Quelle) -->
+    <audio id="potter-theme" src="https://vgmdownloads.com/soundtracks/harry-potter-and-the-sorcerers-stone-ps1/yvbybpgm/02.%20Hedwig%27s%20Theme%20%28Main%20Title%29.mp3" preload="auto" loop></audio>
 
     <div class="container">
         <h1 class="main-title">HAPPY BIRTHDAY</h1>
@@ -368,7 +362,7 @@
         </div>
     </div>
 
-    <!-- GEHEIMES PERGAMENT-POP-UP -->
+    <!-- GEHEIMES POP-UP -->
     <div id="magic-overlay" class="overlay">
         <div id="parchment-card" class="parchment">
             <span class="close-btn" onclick="closeMagic()">&times;</span>
@@ -380,8 +374,8 @@
             
             <div id="lumos-btn" class="lumos-link" onclick="openMaraudersMap()">LUMOS</div>
 
-            <!-- JETZT NEU: Die echte, unverwechselbare Karte des Rumtreibers (Mischung aus Original-Artwork) -->
-            <img id="marauders-map" class="marauders-map-img" src="https://i.imgur.com/uVvO7u9.jpeg" alt="Die Karte des Rumtreibers">
+            <!-- Korrigierter Dateiname passend zum GitHub-Repository -->
+            <img id="marauders-map" class="marauders-map-img" src="file_0000000037e871fd8bd6e0fd161d3f04.png" alt="Magisches Artwork">
         </div>
     </div>
 
@@ -404,26 +398,28 @@
         }
 
         function openMaraudersMap() {
-            // 1. Die geheimnisvolle Harry Potter Melodie abspielen
+            // Musik abspielen
             const audio = document.getElementById('potter-theme');
-            audio.currentTime = 0; // Von vorne starten
-            audio.volume = 0.6;    // Angenehme Lautstärke
-            audio.play().catch(error => console.log("Audio-Autoplay von Browser blockiert:", error));
+            if(audio) {
+                audio.currentTime = 0;
+                audio.volume = 0.4;
+                audio.play().catch(e => console.log("Audio blockiert, läuft geräuschlos weiter."));
+            }
 
-            // 2. Text und Button ausblenden
+            // Text und Button ausblenden
             document.getElementById('msg-title').style.display = 'none';
             document.getElementById('msg-text').style.display = 'none';
             document.getElementById('lumos-btn').style.display = 'none';
             
-            // 3. Auf Vollbild umschalten
+            // Auf Vollbild umschalten
             const card = document.getElementById('parchment-card');
             card.classList.add('map-open');
             
-            // 4. Die ECHTE Karte anzeigen
+            // Dein Bild anzeigen
             const mapImg = document.getElementById('marauders-map');
             mapImg.style.display = 'block';
             
-            // Funkenregen intensivieren
+            // Lumos-Funkenregen zünden
             const container = document.getElementById('magic-container');
             for (let i = 0; i < 30; i++) {
                 createParticle(container);
@@ -434,9 +430,9 @@
             document.getElementById('magic-overlay').classList.remove('active');
             document.getElementById('patronus').classList.remove('patronus-active');
             
-            // Musik stoppen beim Schließen
+            // Musik stoppen
             const audio = document.getElementById('potter-theme');
-            audio.pause();
+            if(audio) { audio.pause(); }
             
             setTimeout(() => {
                 document.getElementById('parchment-card').classList.remove('map-open');
