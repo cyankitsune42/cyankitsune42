@@ -7,24 +7,113 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0; padding: 0;
-            background: linear-gradient(135deg, #2b1b17 0%, #120a07 100%);
+            margin: 0; 
+            padding: 0;
+            /* Warmer, tiefer Bibliotheks-Hintergrund mit sanftem Lichtschein */
+            background: 
+                radial-gradient(circle at 50% 30%, rgba(101, 67, 33, 0.25) 0%, rgba(18, 10, 7, 0.95) 80%),
+                linear-gradient(to bottom, #1a0f0a 0%, #0a0503 100%);
             color: #d7ccc8;
             font-family: 'Playfair Display', serif;
             min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
         }
-        h1 { font-family: 'Cinzel Decorative', serif; font-size: 2.5rem; color: #ffca28; margin-bottom: 20px; }
-        p { max-width: 600px; width: 90%; font-size: 1.3rem; font-style: italic; line-height: 1.6; color: #b0bec5; }
-        .back-btn { margin-top: 40px; padding: 12px 24px; color: #ffca28; text-decoration: none; border: 1px solid #ffca28; border-radius: 8px; transition: all 0.3s; }
-        .back-btn:hover { background: rgba(255, 202, 40, 0.1); }
+
+        /* Subtiler Buchregal- / Linien-Effekt im Hintergrund für den Bücherei-Vibe */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 4rem;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .library-card {
+            z-index: 1;
+            max-width: 650px;
+            width: 85%;
+            padding: 40px 30px;
+            border-radius: 16px;
+            background: rgba(30, 18, 12, 0.6);
+            border: 1px solid rgba(215, 204, 200, 0.15);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.7),
+                inset 0 0 20px rgba(255, 202, 40, 0.05);
+            backdrop-filter: blur(4px);
+        }
+
+        h1 { 
+            font-family: 'Cinzel Decorative', serif; 
+            font-size: 2.6rem; 
+            color: #ffca28; 
+            margin-top: 0;
+            margin-bottom: 30px; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 202, 40, 0.3), 2px 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .text-container {
+            border-left: 2px solid rgba(255, 202, 40, 0.4);
+            border-right: 2px solid rgba(255, 202, 40, 0.4);
+            padding: 10px 20px;
+            margin-bottom: 40px;
+        }
+
+        p { 
+            font-size: 1.35rem; 
+            font-style: italic; 
+            line-height: 1.7; 
+            color: #e0d4cf; 
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        .back-btn { 
+            display: inline-block;
+            padding: 14px 28px; 
+            color: #ffca28; 
+            text-decoration: none; 
+            border: 1px solid #ffca28; 
+            border-radius: 8px; 
+            font-size: 1rem;
+            letter-spacing: 1px;
+            background: rgba(255, 202, 40, 0.02);
+            transition: all 0.4s ease; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .back-btn:hover { 
+            background: linear-gradient(135deg, rgba(78, 52, 46, 0.4), rgba(43, 27, 23, 0.6));
+            border-color: #ffe082;
+            color: #ffe082;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 202, 40, 0.2);
+        }
     </style>
 </head>
 <body>
-    <h1>Deine Bücher</h1>
-    <p>Ein gemütlicher Ort für deine Geschichten, Gedanken und zukünftigen Werke. Lass uns hier bald deine eigenen Kapitel schreiben.</p>
-    <a href="index.html" class="back-btn">Zurück zur Startseite</a>
+
+    <div class="library-card">
+        <h1>Deine Bücher</h1>
+        
+        <div class="text-container">
+            <p>
+                Ein gemütlicher Ort für deine Geschichten, Gedanken und zukünftigen Werke. 
+                Hier ist der Platz, an dem deine eigenen Kapitel lebendig werden und die Welt auf deine Worte wartet.
+            </p>
+        </div>
+        
+        <a href="index.html" class="back-btn">Zurück zur Startseite</a>
+    </div>
+
 </body>
 </html>
-
