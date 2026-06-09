@@ -3,221 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cyankitsune42 | Happy Birthday</title>
-    <!-- Einbinden der Harry-Potter-ähnlichen Schriftart von Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
+    <title>Cyan Kitsune</title>
+    <meta name="description" content="Künstlerisches Portfolio von Cyan Kitsune">
+    <meta property="og:title" content="Cyan Kitsune">
+    <meta property="og:description" content="Künstlerisches Portfolio und kreative Projekte.">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Grunddesign & Magische Partikel im Hintergrund */
         body {
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(circle at center, #1a2a3a 0%, #0d1520 100%);
-            color: #f5f6f7;
-            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(to bottom, #060b11 0%, #11161d 100%);
+            color: #cfd8dc;
+            font-family: 'Playfair Display', serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Schwebender Sternenstaub-Effekt */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            background-position: 0 0, 40px 60px;
-            opacity: 0.15;
-            animation: floatingParticles 60s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes floatingParticles {
-            from { background-position: 0 0, 40px 60px; }
-            to { background-position: 550px 1100px, 350px 700px; }
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
         }
 
         .container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            z-index: 1;
+            max-width: 600px;
+            width: 85%;
             padding: 40px 20px;
-            box-sizing: border-box;
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
-        /* Alter-Anzeige (29+1) */
-        .age-badge {
+        .main-title {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.2rem;
-            color: #00d2ff;
-            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-            margin-top: 20px;
-            letter-spacing: 3px;
-            animation: pulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 25px rgba(0, 210, 255, 0.9); }
-        }
-
-        /* Harry Potter Schriftstil für die Hauptüberschrift */
-        .potter-title {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #ffca28;
-            margin: 15px 0 40px 0;
-            line-height: 1.4;
+            margin-bottom: 5px;
             letter-spacing: 2px;
-            text-shadow: 
-                0 0 10px rgba(255, 202, 40, 0.5),
-                0 0 20px rgba(255, 202, 40, 0.3),
-                2px 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 0 15px rgba(255, 202, 40, 0.3);
         }
 
-        /* Interaktive Buttons */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin: 20px 0;
-        }
-
-        .magic-button {
-            position: relative;
-            padding: 24px 30px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            cursor: pointer;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-decoration: none;
-            display: block;
-        }
-
-        .magic-button::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: -1;
-        }
-
-        /* Hover-Effekte der Buttons */
-        .btn-books:hover {
-            border-color: #d7ccc8;
-            box-shadow: 0 0 25px rgba(215, 204, 200, 0.4);
-            transform: translateY(-3px);
-        }
-        .btn-books::before {
-            background: linear-gradient(135deg, rgba(78, 52, 46, 0.85), rgba(43, 27, 23, 0.95));
-        }
-
-        .btn-poems:hover {
-            border-color: #b3e5fc;
-            box-shadow: 0 0 25px rgba(179, 229, 252, 0.4);
-            transform: translateY(-3px);
-        }
-        .btn-poems::before {
-            background: linear-gradient(135deg, rgba(38, 50, 56, 0.85), rgba(13, 71, 161, 0.9));
-        }
-
-        .btn-art:hover {
-            border-color: #cfd8dc;
-            box-shadow: 0 0 25px rgba(207, 216, 220, 0.3);
-            transform: translateY(-3px);
-        }
-        .btn-art::before {
-            background: linear-gradient(135deg, rgba(55, 71, 79, 0.85), rgba(38, 50, 56, 0.95));
-        }
-
-        .magic-button:hover::before { opacity: 1; }
-        .magic-button span { position: relative; z-index: 2; letter-spacing: 1px; }
-
-        /* Impressum Style mit korrigiertem Text */
-        footer {
-            margin-top: auto;
-            padding: 40px 20px;
-            width: 100%;
-            box-sizing: border-box;
-            background: rgba(5, 10, 15, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            z-index: 1;
-        }
-
-        .impressum-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #546e7a;
-            margin-bottom: 10px;
-        }
-
-        .impressum-text {
-            font-family: 'Playfair Display', serif;
+        .subtitle {
+            font-size: 1.4rem;
             font-style: italic;
+            color: #b0bec5;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #f0f4f8;
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 202, 40, 0.08);
+            border-color: #ffca28;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Highlight für den ersten Button */
+        .nav-btn.highlight {
+            background: rgba(255, 202, 40, 0.04);
+            border-color: rgba(255, 202, 40, 0.3);
+        }
+        .nav-btn.highlight:hover {
+            background: rgba(255, 202, 40, 0.12);
+            border-color: #ffca28;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #b0bec5;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
             font-size: 1.1rem;
-            color: #cfd8dc;
-            max-width: 550px;
-            margin: 0 auto;
-            line-height: 1.6;
+            font-style: italic;
+            line-height: 1.7;
+            color: #90a4ae;
+            margin: 0 0 25px 0;
+        }
+
+        /* Styling für die Social-Media-Links */
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-link {
+            color: #b0bec5;
+            font-size: 1.6rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ffca28;
+            transform: scale(1.15);
+            text-shadow: 0 0 10px rgba(255, 202, 40, 0.4);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Das "magische" Alter -->
-        <div class="age-badge">29+1</div>
+        <h1 class="main-title">CYAN KITSUNE</h1>
+        <div class="subtitle">Prinzessin</div>
 
-        <!-- Die Harry-Potter-Style Geburtstagsüberschrift -->
-        <h1 class="potter-title">Alles Gute zum Geburtstag<br>Prinzessin</h1>
+        <a href="buecher.html" class="nav-btn highlight">Hier könnten deine Bücher sein</a>
+        <a href="gedichte.html" class="nav-btn">Hier könnten deine Gedichte sein</a>
+        <a href="kunst.html" class="nav-btn">Hier deine Kunst</a>
 
-        <!-- Die 3 Buttons leiten jetzt direkt auf neue Seiten weiter -->
-        <div class="button-container">
+        <div class="footer">
+            <h3>IMPRESSUM</h3>
+            <p>
+                Manchmal rational aber unglaublich stolz auf dich und deinen Ehrgeiz. 
+                Lass mich Rückenwind sein, für alles was vor dir liegt.
+            </p>
             
-            <a href="buecher.html" class="magic-button btn-books">
-                <span>Hier könnten deine Bücher sein</span>
-            </a>
-
-            <a href="gedichte.html" class="magic-button btn-poems">
-                <span>Hier könnten deine Gedichte sein</span>
-            </a>
-
-            <a href="kunst.html" class="magic-button btn-art">
-                <span>Hier deine Kunst</span>
-            </a>
-
+            <div class="social-icons">
+                <a href="https://www.instagram.com/cyan.kitsune" target="_blank" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@cyan.kitsune" target="_blank" class="social-link" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
         </div>
     </div>
-
-    <!-- Dein korrigiertes Impressum im Fußbereich -->
-    <footer>
-        <div class="impressum-title">Impressum</div>
-        <p class="impressum-text">
-            Manchmal rational aber unglaublich stolz auf dich und deinen Ehrgeiz. Lass mich dein Rückenwind sein, für alles was vor dir liegt.
-        </p>
-    </footer>
 
 </body>
 </html>
